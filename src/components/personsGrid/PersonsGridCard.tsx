@@ -1,4 +1,4 @@
-import { Person } from '../types/Person';
+import { Person } from '../../types/Person';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
@@ -10,7 +10,7 @@ interface Props {
   person: Person;
 }
 
-const PersonCard = ({ person }: Props) => {
+const PersonsGridCard = ({ person }: Props) => {
   const navigate = useNavigate();
 
   /**
@@ -53,4 +53,4 @@ const PersonCard = ({ person }: Props) => {
   );
 };
 
-export default PersonCard;
+export default PersonsGridCard;

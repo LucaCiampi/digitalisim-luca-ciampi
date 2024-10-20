@@ -10,7 +10,7 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-import FILTERS from '../constants/filters';
+import FILTERS from '../../constants/filters';
 
 interface Props {
   genderFilter: string;

@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import PersonsGrid from './components/PersonsGrid';
-import Sidenav from './components/Sidenav';
+import PersonsGrid from './components/personsGrid/PersonsGrid';
+import Sidenav from './components/layout/Sidenav';
 import PersonDetails from './components/PersonDetails';
 import { useState } from 'react';
 

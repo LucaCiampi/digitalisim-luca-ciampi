@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import usePersons from '../hooks/usePersons';
-import PersonCard from './PersonCard';
+import usePersons from '../../hooks/usePersons';
+import PersonsGridCard from './PersonsGridCard';
 import { useState } from 'react';
 import PersonsGridOptions from './PersonsGridOptions';
 import { SelectChangeEvent } from '@mui/material';
-import useFilteredPersons from '../hooks/useFilteredPersons';
+import useFilteredPersons from '../../hooks/useFilteredPersons';
 
 interface Props {
   genderFilter: string;
@@ -55,7 +55,7 @@ const PersonsGrid = ({ genderFilter, countryFilter }: Props) => {
       />
       <div className="persons-grid__elements">
         {filteredPersons.map((person, index) => (
-          <PersonCard key={person.id.value ?? index} person={person} />
+          <PersonsGridCard key={person.id.value ?? index} person={person} />
         ))}
       </div>
     </motion.div>
