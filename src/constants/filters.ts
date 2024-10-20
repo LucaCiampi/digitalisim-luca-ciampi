@@ -1,4 +1,8 @@
 const FILTERS = {
+  sex: [
+    { label: 'Homme', value: 'male' },
+    { label: 'Femme', value: 'female' },
+  ],
   countries: [
     'United States',
     'France',

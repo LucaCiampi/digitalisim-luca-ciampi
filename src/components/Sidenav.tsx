@@ -63,8 +63,11 @@ const Sidenav = ({
               <MenuItem value="">
                 <em>Tout</em>
               </MenuItem>
-              <MenuItem value="male">Homme</MenuItem>
-              <MenuItem value="female">Femme</MenuItem>
+              {FILTERS.sex.map((sex) => (
+                <MenuItem key={sex.value} value={sex.value}>
+                  {sex.label}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </ListItem>

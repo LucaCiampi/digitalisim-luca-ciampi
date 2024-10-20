@@ -26,7 +26,7 @@ const PersonCard = ({ person }: Props) => {
   };
 
   return (
-    <Card sx={{ width: 384 }}>
+    <Card sx={{ width: 384, cursor: 'pointer' }} onClick={handleClick}>
       <CardContent sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
         <Avatar
           alt={`${person.name.first} ${person.name.last}`}
@@ -34,10 +34,14 @@ const PersonCard = ({ person }: Props) => {
           sx={{ width: 128, height: 128 }}
         />
         <div>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography variant="h5" component="div">
             {person.name.first} {person.name.last}
           </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+          <Typography
+            marginBottom={1}
+            variant="body2"
+            sx={{ color: 'text.secondary' }}
+          >
             {person.location.city}, {person.location.country}
           </Typography>
           <Button onClick={handleClick} size="small" variant="contained">
