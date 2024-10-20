@@ -20,7 +20,9 @@ const PersonCard = ({ person }: Props) => {
     /* L'API publique ne me renvoie pas toujours d'ID, 
     il s'agit donc d'une solution moins viable 
     que d'utiliser le prénom et nom de famille */
-    navigate(`/persons/${person.name.first}-${person.name.last}`);
+    navigate(`/persons/${person.name.first}-${person.name.last}`, {
+      state: { person },
+    });
   };
 
   return (
