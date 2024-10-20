@@ -2,7 +2,8 @@ import { motion } from 'framer-motion';
 import usePersons from '../hooks/usePersons';
 import PersonCard from './PersonCard';
 import { useMemo, useState } from 'react';
-import TextField from '@mui/material/TextField';
+import PersonsGridOptions from './PersonsGridOptions';
+import { SelectChangeEvent } from '@mui/material';
 
 interface Props {
   genderFilter: string;
@@ -12,9 +13,14 @@ interface Props {
 const PersonsGrid = ({ genderFilter, countryFilter }: Props) => {
   const { persons, loading, error } = usePersons();
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [sortOrder, setSortOrder] = useState<string>('');
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
+  };
+
+  const handleSortChange = (event: SelectChangeEvent) => {
+    setSortOrder(event.target.value as string);
   };
 
   const filteredPersons = useMemo(() => {
@@ -38,8 +44,23 @@ const PersonsGrid = ({ genderFilter, countryFilter }: Props) => {
       );
     }
 
+    // Tri
+    if (sortOrder === 'asc') {
+      filtered = filtered.sort((a, b) =>
+        `${a.name.first} ${a.name.last}`.localeCompare(
+          `${b.name.first} ${b.name.last}`
+        )
+      );
+    } else if (sortOrder === 'desc') {
+      filtered = filtered.sort((a, b) =>
+        `${b.name.first} ${b.name.last}`.localeCompare(
+          `${a.name.first} ${a.name.last}`
+        )
+      );
+    }
+
     return filtered;
-  }, [persons, genderFilter, countryFilter, searchQuery]);
+  }, [persons, genderFilter, countryFilter, searchQuery, sortOrder]);
 
   if (loading) {
     return <p>Chargement...</p>;
@@ -56,14 +77,12 @@ const PersonsGrid = ({ genderFilter, countryFilter }: Props) => {
       transition={{ duration: 0.5 }}
       className="persons-grid"
     >
-      <div className="persons-grid__top">
-        <TextField
-          label="Rechercher"
-          variant="standard"
-          value={searchQuery}
-          onChange={handleSearchChange}
-        />
-      </div>
+      <PersonsGridOptions
+        searchQuery={searchQuery}
+        handleSearchChange={handleSearchChange}
+        sortOrder={sortOrder}
+        handleSortChange={handleSortChange}
+      />
       <div className="persons-grid__elements">
         {filteredPersons.map((person, index) => (
           <PersonCard key={person.id.value ?? index} person={person} />
