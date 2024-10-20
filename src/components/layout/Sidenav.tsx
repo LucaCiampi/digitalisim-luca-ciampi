@@ -28,15 +28,28 @@ const Sidenav = ({
 }: Props) => {
   const navigate = useNavigate();
 
-  const handleGenderChange = (event: SelectChangeEvent<string>) => {
+  /**
+   * Handles changes in the gender dropdown and updates the gender filter state.
+   *
+   * @param event - The selection change event from the gender dropdown
+   */
+  const handleGenderChange = (event: SelectChangeEvent<string>): void => {
     setGenderFilter(event.target.value as string);
   };
 
-  const handleCountryChange = (event: SelectChangeEvent<string>) => {
+  /**
+   * Handles changes in the country dropdown and updates the country filter state.
+   *
+   * @param event - The selection change event from the country dropdown
+   */
+  const handleCountryChange = (event: SelectChangeEvent<string>): void => {
     setCountryFilter(event.target.value as string);
   };
 
-  const handleHomeClick = () => {
+  /**
+   * Handles the click event for navigating to the home page.
+   */
+  const handleHomeClick = (): void => {
     navigate('/');
   };
 

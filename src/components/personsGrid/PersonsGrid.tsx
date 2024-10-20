@@ -16,10 +16,20 @@ const PersonsGrid = ({ genderFilter, countryFilter }: Props) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<string>('');
 
+  /**
+   * Handles changes in the search input field and updates the search query state.
+   *
+   * @param event - The input change event
+   */
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
 
+  /**
+   * Handles changes in the sort dropdown and updates the sort order state.
+   *
+   * @param event - The selection change event from the dropdown
+   */
   const handleSortChange = (event: SelectChangeEvent) => {
     setSortOrder(event.target.value as string);
   };
