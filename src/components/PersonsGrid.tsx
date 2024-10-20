@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import usePersons from '../hooks/usePersons';
 import PersonCard from './PersonCard';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import PersonsGridOptions from './PersonsGridOptions';
 import { SelectChangeEvent } from '@mui/material';
+import useFilteredPersons from '../hooks/useFilteredPersons';
 
 interface Props {
   genderFilter: string;
@@ -23,44 +24,13 @@ const PersonsGrid = ({ genderFilter, countryFilter }: Props) => {
     setSortOrder(event.target.value as string);
   };
 
-  const filteredPersons = useMemo(() => {
-    let filtered = persons;
-
-    if (genderFilter) {
-      filtered = filtered.filter((person) => person.gender === genderFilter);
-    }
-
-    if (countryFilter) {
-      filtered = filtered.filter(
-        (person) => person.location.country === countryFilter
-      );
-    }
-
-    if (searchQuery) {
-      filtered = filtered.filter((person) =>
-        `${person.name.first} ${person.name.last}`
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase())
-      );
-    }
-
-    // Tri
-    if (sortOrder === 'asc') {
-      filtered = filtered.sort((a, b) =>
-        `${a.name.first} ${a.name.last}`.localeCompare(
-          `${b.name.first} ${b.name.last}`
-        )
-      );
-    } else if (sortOrder === 'desc') {
-      filtered = filtered.sort((a, b) =>
-        `${b.name.first} ${b.name.last}`.localeCompare(
-          `${a.name.first} ${a.name.last}`
-        )
-      );
-    }
-
-    return filtered;
-  }, [persons, genderFilter, countryFilter, searchQuery, sortOrder]);
+  const filteredPersons = useFilteredPersons({
+    persons,
+    genderFilter,
+    countryFilter,
+    searchQuery,
+    sortOrder,
+  });
 
   if (loading) {
     return <p>Chargement...</p>;
