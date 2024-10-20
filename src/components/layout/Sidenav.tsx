@@ -2,15 +2,16 @@ import {
   Drawer,
   List,
   ListItem,
-  ListItemText,
   FormControl,
   InputLabel,
   Select,
   MenuItem,
   SelectChangeEvent,
+  IconButton,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 import FILTERS from '../../constants/filters';
+import { useNavigate } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
 
 interface Props {
   genderFilter: string;
@@ -25,12 +26,18 @@ const Sidenav = ({
   countryFilter,
   setCountryFilter,
 }: Props) => {
+  const navigate = useNavigate();
+
   const handleGenderChange = (event: SelectChangeEvent<string>) => {
     setGenderFilter(event.target.value as string);
   };
 
   const handleCountryChange = (event: SelectChangeEvent<string>) => {
     setCountryFilter(event.target.value as string);
+  };
+
+  const handleHomeClick = () => {
+    navigate('/');
   };
 
   return (
@@ -42,13 +49,20 @@ const Sidenav = ({
         '& .MuiDrawer-paper': {
           width: 240,
           boxSizing: 'border-box',
+          backgroundColor: '#fafafa',
         },
       }}
     >
       <List>
         {/* Lien vers la page d'accueil */}
-        <ListItem component={Link} to="/">
-          <ListItemText primary="Accueil" />
+        <ListItem>
+          <IconButton
+            onClick={handleHomeClick}
+            color="primary"
+            aria-label="home"
+          >
+            <HomeIcon />
+          </IconButton>
         </ListItem>
 
         {/* Filtre par sexe */}
@@ -71,7 +85,6 @@ const Sidenav = ({
             </Select>
           </FormControl>
         </ListItem>
-
         {/* Filtre par pays */}
         <ListItem>
           <FormControl fullWidth>
