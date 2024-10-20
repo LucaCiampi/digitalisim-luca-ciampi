@@ -18,7 +18,7 @@ const PersonsGrid = () => {
 
   // Affichage des personnages
   return (
-    <div>
+    <div className="persons-grid">
       {persons.map((person, index) => (
         <PersonCard key={person.id.value ?? index} person={person} />
       ))}
