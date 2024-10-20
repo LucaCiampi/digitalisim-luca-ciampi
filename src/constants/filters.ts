@@ -1,3 +1,16 @@
-const FILTERS = ['Next.js', 'React.js', 'React native', 'Three.js', 'Unity'];
+const FILTERS = {
+  countries: [
+    'United States',
+    'France',
+    'Germany',
+    'United Kingdom',
+    'Canada',
+    'Australia',
+    'Brazil',
+    'India',
+    'Mexico',
+    'Japan',
+  ],
+};
 
 export default FILTERS;
