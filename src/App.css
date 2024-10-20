@@ -5,6 +5,7 @@
 
 .content {
   padding: 1rem;
+  overflow-x: clip;
 }
 
 .persons-grid {

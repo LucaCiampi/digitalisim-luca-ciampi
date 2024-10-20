@@ -1,28 +1,29 @@
+import { motion } from 'framer-motion';
 import usePersons from '../hooks/usePersons';
 import PersonCard from './PersonCard';
 
 const PersonsGrid = () => {
   const { persons, loading, error } = usePersons();
 
-  // Gestion de l'état de chargement
   if (loading) {
     return <p>Chargement...</p>;
   }
 
-  // Gestion des erreurs
   if (error) {
     return <p>Erreur: {error}</p>;
   }
 
-  console.log(persons);
-
-  // Affichage des personnages
   return (
-    <div className="persons-grid">
+    <motion.div
+      className="persons-grid"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       {persons.map((person, index) => (
         <PersonCard key={person.id.value ?? index} person={person} />
       ))}
-    </div>
+    </motion.div>
   );
 };
 

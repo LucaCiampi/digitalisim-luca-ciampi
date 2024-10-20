@@ -2,7 +2,7 @@ import { Drawer, List, ListItem, ListItemText } from '@mui/material';
 
 const Sidenav = () => (
   <Drawer
-    variant="permanent" // Drawer permanent
+    variant="permanent"
     sx={{
       width: 240,
       flexShrink: 0,
