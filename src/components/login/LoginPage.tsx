@@ -3,7 +3,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 
-function Login() {
+function LoginPage() {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -22,4 +22,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;

@@ -1,4 +1,4 @@
-import { Person } from '../../types/Person';
+import { Person } from '../../../types/Person';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';

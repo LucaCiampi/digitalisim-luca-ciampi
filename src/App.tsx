@@ -5,50 +5,32 @@ import {
   Routes,
   Navigate,
 } from 'react-router-dom';
-import PersonsGrid from './components/personsGrid/PersonsGrid';
-import Sidenav from './components/layout/Sidenav';
+import PersonsGrid from './components/dashboard/personsGrid/PersonsGrid';
 import PersonDetails from './components/PersonDetails';
-import { useState } from 'react';
-import Login from './components/login/Login';
+import LoginPage from './components/login/LoginPage';
 import ProtectedRoutes from './components/login/ProtectedRoutes';
 import { AuthProvider } from './contexts/AuthContext';
+import Dashboard from './components/dashboard/Dashboard';
 
 function App() {
-  // State pour les filtres
-  const [genderFilter, setGenderFilter] = useState<string>('');
-  const [countryFilter, setCountryFilter] = useState<string>('');
-
   return (
     <AuthProvider>
       <Router>
         <div className="App">
-          <Sidenav
-            genderFilter={genderFilter}
-            setGenderFilter={setGenderFilter}
-            countryFilter={countryFilter}
-            setCountryFilter={setCountryFilter}
-          />
-          <div className="content">
-            <Routes>
-              {/* Utilisateur non connecté */}
-              <Route path="*" element={<Navigate to="/login" replace />} />
-              <Route path="/login" element={<Login />} />
+          <Routes>
+            {/* Utilisateur non connecté */}
+            <Route path="*" element={<Navigate to="/login" replace />} />
+            <Route path="/login" element={<LoginPage />} />
 
-              {/* Utilisateur connecté */}
-              <Route element={<ProtectedRoutes />}>
-                <Route
-                  path="/"
-                  element={
-                    <PersonsGrid
-                      genderFilter={genderFilter}
-                      countryFilter={countryFilter}
-                    />
-                  }
-                />
+            {/* Utilisateur connecté */}
+            <Route element={<ProtectedRoutes />}>
+              <Route element={<Dashboard />}>
+                {/* Routes enfants */}
+                <Route path="/" element={<PersonsGrid />} />
                 <Route path="/persons/:personId" element={<PersonDetails />} />
               </Route>
-            </Routes>
-          </div>
+            </Route>
+          </Routes>
         </div>
       </Router>
     </AuthProvider>

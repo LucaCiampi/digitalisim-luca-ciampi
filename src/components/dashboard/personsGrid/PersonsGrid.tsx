@@ -1,17 +1,20 @@
 import { motion } from 'framer-motion';
-import usePersons from '../../hooks/usePersons';
+import usePersons from '../../../hooks/usePersons';
 import PersonsGridCard from './PersonsGridCard';
 import { useState } from 'react';
 import PersonsGridOptions from './PersonsGridOptions';
 import { SelectChangeEvent } from '@mui/material';
-import useFilteredPersons from '../../hooks/useFilteredPersons';
+import useFilteredPersons from '../../../hooks/useFilteredPersons';
+import { useOutletContext } from 'react-router-dom';
 
-interface Props {
+interface FilterContext {
   genderFilter: string;
   countryFilter: string;
 }
 
-const PersonsGrid = ({ genderFilter, countryFilter }: Props) => {
+const PersonsGrid = () => {
+  const { genderFilter, countryFilter } = useOutletContext<FilterContext>();
+
   const { persons, loading, error } = usePersons();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortOrder, setSortOrder] = useState<string>('');
@@ -34,6 +37,9 @@ const PersonsGrid = ({ genderFilter, countryFilter }: Props) => {
     setSortOrder(event.target.value as string);
   };
 
+  /**
+   * Custom hook to return persons according to the current active filters
+   */
   const filteredPersons = useFilteredPersons({
     persons,
     genderFilter,

@@ -33,7 +33,7 @@ const PersonDetail: React.FC = () => {
       className="person-detail"
     >
       <GoBackButton />
-      <div>
+      <div className="person-detail__content">
         <Avatar
           alt={`${person.name.first} ${person.name.last}`}
           src={person.picture.large}
@@ -64,10 +64,6 @@ const PersonDetail: React.FC = () => {
 
         <Typography variant="subtitle1" gutterBottom>
           <strong>Téléphone :</strong> {person.phone}
-        </Typography>
-
-        <Typography variant="subtitle1" gutterBottom>
-          <strong>Cellulaire :</strong> {person.cell}
         </Typography>
 
         <Typography variant="subtitle1" gutterBottom>
