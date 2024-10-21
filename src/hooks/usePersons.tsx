@@ -3,6 +3,11 @@ import axios from 'axios';
 import { API_BASE_URL } from '../constants/config';
 import { Person } from '../types/Person';
 
+/**
+ * Fetches the persons data from randomuser.me
+ * @param amount the number of fake users retrieved
+ * @returns fake users data
+ */
 const usePersons = (amount: number = 12) => {
   const [persons, setPersons] = useState<Person[]>([]);
   const [loading, setLoading] = useState<boolean>(true);

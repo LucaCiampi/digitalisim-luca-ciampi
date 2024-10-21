@@ -13,7 +13,7 @@ function LoginPage() {
   };
 
   return (
-    <div>
+    <div className="login-page">
       <h2>Connexion</h2>
       <Button variant="contained" onClick={handleLogin}>
         Se connecter

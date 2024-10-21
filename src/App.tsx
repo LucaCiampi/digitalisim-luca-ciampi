@@ -7,8 +7,8 @@ import {
 } from 'react-router-dom';
 import PersonsGrid from './components/dashboard/personsGrid/PersonsGrid';
 import PersonDetails from './components/PersonDetails';
-import LoginPage from './components/login/LoginPage';
-import ProtectedRoutes from './components/login/ProtectedRoutes';
+import LoginPage from './components/authentication/LoginPage';
+import ProtectedRoutes from './components/authentication/ProtectedRoutes';
 import { AuthProvider } from './contexts/AuthContext';
 import Dashboard from './components/dashboard/Dashboard';
 

@@ -24,3 +24,12 @@
 .person-detail__content {
   padding-top: 1rem;
 }
+
+.login-page {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap column;
+  min-height: 260px;
+}
