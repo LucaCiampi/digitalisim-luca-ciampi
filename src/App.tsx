@@ -10,7 +10,7 @@ import Sidenav from './components/layout/Sidenav';
 import PersonDetails from './components/PersonDetails';
 import { useState } from 'react';
 import Login from './components/login/Login';
-import ProtectedRoute from './components/login/ProtectedRoute';
+import ProtectedRoutes from './components/login/ProtectedRoutes';
 import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
@@ -35,25 +35,18 @@ function App() {
               <Route path="/login" element={<Login />} />
 
               {/* Utilisateur connecté */}
-              <Route
-                path="/"
-                element={
-                  <ProtectedRoute>
+              <Route element={<ProtectedRoutes />}>
+                <Route
+                  path="/"
+                  element={
                     <PersonsGrid
                       genderFilter={genderFilter}
                       countryFilter={countryFilter}
                     />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/persons/:personId"
-                element={
-                  <ProtectedRoute>
-                    <PersonDetails />
-                  </ProtectedRoute>
-                }
-              />
+                  }
+                />
+                <Route path="/persons/:personId" element={<PersonDetails />} />
+              </Route>
             </Routes>
           </div>
         </div>

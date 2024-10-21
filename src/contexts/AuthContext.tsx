@@ -1,5 +1,6 @@
 import { createContext, useState, ReactNode } from 'react';
 
+// Définition du contexte d'authentification
 interface AuthContextType {
   isAuthenticated: boolean;
   login: () => void;
@@ -12,6 +13,7 @@ export const AuthContext = createContext<AuthContextType>({
   logout: () => {},
 });
 
+// Définition du provider d'authenfication
 interface AuthProviderProps {
   children: ReactNode;
 }
